@@ -1,0 +1,9 @@
+<div id="sidebar">    
+    <h2>★PV数ランキング</h2>
+    <ul>
+      <% @ranking_articles.each do |title, score| %>
+          <li><%= link_to title, article_path(Article.find_by(title: "#{title}").id) %> (<%= score.to_i %>PV)</li>
+      <% end %>
+    </ul>
+  </div>
+    <div class="clear"></div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails Camp Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head> 
+  <body>
+    <%= render 'shared/flash' %>
+    <%= render 'layouts/header' %>
+
+    <% if @path.is('articles#index') %>
+      <div id="main">
+        <%= image_tag('main-img.jpg') %>
+      </div>
+    <% elsif @path.is('articles#show') %>
+      <div id="title">
+        <div>
+          <p><%= @article.created_at.to_s(:datatime_jp) %>/ 書いた人: <%= @article.name %></p>
+          <h1><%= @article.title %></h1>
+        </div>
+      </div>
+    <% end %>
+
+
+    <div id="article_wrap">
+      <%= yield %>
+    </div>
+    <div class="clear"></div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>
